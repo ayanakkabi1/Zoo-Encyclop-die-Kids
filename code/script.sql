@@ -46,4 +46,6 @@ SET NOM_Animal= 'Requin',
     ID_Habitat =4
  WHERE ID_Animal= 2;
 
- /
+ /*Supprimer un animal*/
+ DELETE FROM animal
+WHERE ID_Animal=5;
