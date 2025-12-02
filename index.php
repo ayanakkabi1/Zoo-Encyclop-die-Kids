@@ -1,6 +1,5 @@
 <?php
 include "config/database.php";
-include "pagesphp/data.php";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -216,10 +215,11 @@ include "pagesphp/data.php";
                 <div>
                     <label class="block text-gray-700 mb-2">Habitat</label>
                     <select name="animal_habitat" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" required>
-                        <option value="">Choisir un habitat</option>
-                        <?php
-                        
-                        ?>
+                          <option value="">-- Choisir Habitat --</option>
+        <option value="1">Savane</option>
+        <option value="2">Jungle</option>
+        <option value="3">Désert</option>
+        <option value="4">Océan</option>
                     </select>
                 </div>
                 <div>
