@@ -1,5 +1,6 @@
 <?php
 include "config/database.php";
+include "pagesphp/data.php";
 ?>
 <!DOCTYPE html>
 <html lang="fr">

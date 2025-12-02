@@ -27,7 +27,7 @@
         $nom_habitat = $conn->real_escape_string($nom_habitat);
         $description = $conn->real_escape_string($description);
         
-        $sql = "INSERT INTO habitat (nom, description) 
+        $sql = "INSERT INTO habitat (Nom_Habitat, des_Habitat) 
                 VALUES ('$nom_habitat', '$description')";
     }
     header("Location: ../index.php");
