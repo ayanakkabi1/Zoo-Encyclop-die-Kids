@@ -29,7 +29,7 @@ VALUES
 ('Orque', 'https://media.istockphoto.com/id/511864458/vector/cute-killer-whale-cartoon.jpg?s=612x612&w=0&k=20&c=06Q6_zncvqtq_fzVnS8R92ObJ2HIiw6thDVk5frlyDQ=','Carnivore' ,4);
 
 /*Ajouter d'un animal (ID, type alimentaire, image) l'Id est AUTO_INCREMENT*/
-INSERT INTO animal (ID_Animal, Type_Alimentaire, image_animal)
+INSERT INTO animal ( Type_Alimentaire, image_animal)
 VALUES
 ('Carnivore', 'https://easydrawingguides.com/wp-content/uploads/2022/03/how-to-draw-an-easy-cartoon-lion-featured-image-1200.png');
 
@@ -49,3 +49,7 @@ SET NOM_Animal= 'Requin',
  /*Supprimer un animal*/
  DELETE FROM animal
 WHERE ID_Animal=5;
+
+/*Afficher la liste des animaux du zoo avec leurs images*/
+Select * FROM animal;
+
