@@ -52,4 +52,3 @@ WHERE ID_Animal=5;
 
 /*Afficher la liste des animaux du zoo avec leurs images*/
 Select * FROM animal;
-
