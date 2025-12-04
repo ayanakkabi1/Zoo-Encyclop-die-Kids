@@ -200,7 +200,7 @@ include "config/database.php";
             
             <!-- Formulaire pour ajouter un animal -->
             <form id="animal-form" class="space-y-4 page-hidden" action="pagesphp/data.php" method="POST">
-                <!-- ⭐ CHAMP CACHÉ ANIMAL ⭐ -->
+                
                 <input type="hidden" name="action_type" value="ajouter_animal">
                 
                 <h4 class="text-xl font-bold text-green-700 mb-4">Nouvel animal</h4>
@@ -217,16 +217,7 @@ include "config/database.php";
                     <select name="animal_habitat" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" required>
                         <option value="">Choisir un habitat</option>
                         <?php
-                        // Charger les habitats depuis la base de données
-                        if (isset($conn)) {
-                            $sql = "SELECT DISTINCT nom FROM habitats ORDER BY nom";
-                            $result = $conn->query($sql);
-                            if ($result) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<option value="' . htmlspecialchars($row['nom']) . '">' . htmlspecialchars($row['nom']) . '</option>';
-                                }
-                            }
-                        }
+                        
                         ?>
                     </select>
                 </div>
