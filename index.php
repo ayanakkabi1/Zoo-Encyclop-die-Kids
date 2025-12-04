@@ -178,86 +178,103 @@ include "config/database.php";
     </footer>
 
     <!-- Popup d'ajout -->
-    <div id="add-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 page-hidden" >
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 popup-animation">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-2xl font-bold text-green-800">Ajouter un élément</h3>
-                    <button id="close-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-                </div>
-                
-                <div id="choice-buttons" class="mb-6">
-                    <p class="text-gray-700 mb-4">Que souhaitez-vous ajouter ?</p>
-                    <div class="flex gap-4">
-                        <button id="add-animal-btn" class="flex-1 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 font-semibold transition-colors">
-                            Animal
-                        </button>
-                        <button id="add-habitat-btn" class="flex-1 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold transition-colors">
-                            Habitat
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Formulaire pour ajouter un animal -->
-                <form id="animal-form" class="space-y-4 page-hidden"  action="pagesphp/data.php" method="POST">
-                    <h4 class="text-xl font-bold text-green-700 mb-4">Nouvel animal</h4>
-                    <div>
-                        <label class="block text-gray-700 mb-2">Nom de l'animal</label>
-                        <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" id="animal-name" required>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2">Image URL</label>
-                        <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" id="animal-image" placeholder="https://example.com/image.jpg">
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2">Habitat</label>
-                        <select class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" id="animal-habitat" required>
-                            <!-- Les habitats seront chargés dynamiquement en PHP -->
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2">Régime alimentaire</label>
-                        <select class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" id="animal-diet" required>
-                            <option value="">Sélectionnez un régime</option>
-                            <option value="Carnivore">Carnivore</option>
-                            <option value="Herbivore">Herbivore</option>
-                            <option value="Omnivore">Omnivore</option>
-                        </select>
-                    </div>
-                    <div class="flex gap-4 pt-4">
-                        <button type="submit" class="flex-1 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold transition-colors">
-                            Ajouter l'animal
-                        </button>
-                        <button type="button" id="cancel-animal" class="flex-1 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 font-semibold transition-colors">
-                            Annuler
-                        </button>
-                    </div>
-                </form>
-                
-                <!-- Formulaire pour ajouter un habitat -->
-                <form id="habitat-form" class="space-y-4 page-hidden" action="pagesphp/data.php" method="POST">
-                    <h4 class="text-xl font-bold text-green-700 mb-4">Nouvel habitat</h4>
-                    <div>
-                        <label class="block text-gray-700 mb-2">Nom de l'habitat</label>
-                        <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" id="habitat-name" required>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2">Description</label>
-                        <textarea class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" id="habitat-description" rows="3"></textarea>
-                    </div>
-                    <div class="flex gap-4 pt-4">
-                        <button type="submit" class="flex-1 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold transition-colors">
-                            Ajouter l'habitat
-                        </button>
-                        <button type="button" id="cancel-habitat" class="flex-1 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 font-semibold transition-colors">
-                            Annuler
-                        </button>
-                    </div>
-                </form>
+   <div id="add-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 page-hidden">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 popup-animation">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-green-800">Ajouter un élément</h3>
+                <button id="close-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
             </div>
+            
+            <div id="choice-buttons" class="mb-6">
+                <p class="text-gray-700 mb-4">Que souhaitez-vous ajouter ?</p>
+                <div class="flex gap-4">
+                    <button id="add-animal-btn" class="flex-1 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 font-semibold transition-colors">
+                        Animal
+                    </button>
+                    <button id="add-habitat-btn" class="flex-1 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold transition-colors">
+                        Habitat
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Formulaire pour ajouter un animal -->
+            <form id="animal-form" class="space-y-4 page-hidden" action="pagesphp/data.php" method="POST">
+                <!-- ⭐ CHAMP CACHÉ ANIMAL ⭐ -->
+                <input type="hidden" name="action_type" value="ajouter_animal">
+                
+                <h4 class="text-xl font-bold text-green-700 mb-4">Nouvel animal</h4>
+                <div>
+                    <label class="block text-gray-700 mb-2">Nom de l'animal</label>
+                    <input type="text" name="animal_name" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Image URL</label>
+                    <input type="text" name="animal_image" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" placeholder="https://example.com/image.jpg">
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Habitat</label>
+                    <select name="animal_habitat" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" required>
+                        <option value="">Choisir un habitat</option>
+                        <?php
+                        // Charger les habitats depuis la base de données
+                        if (isset($conn)) {
+                            $sql = "SELECT DISTINCT nom FROM habitats ORDER BY nom";
+                            $result = $conn->query($sql);
+                            if ($result) {
+                                while($row = $result->fetch_assoc()) {
+                                    echo '<option value="' . htmlspecialchars($row['nom']) . '">' . htmlspecialchars($row['nom']) . '</option>';
+                                }
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Régime alimentaire</label>
+                    <select name="animal_diet" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" required>
+                        <option value="">Sélectionnez un régime</option>
+                        <option value="Carnivore">Carnivore</option>
+                        <option value="Herbivore">Herbivore</option>
+                        <option value="Omnivore">Omnivore</option>
+                    </select>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" class="flex-1 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold transition-colors">
+                        Ajouter l'animal
+                    </button>
+                    <button type="button" id="cancel-animal" class="flex-1 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 font-semibold transition-colors">
+                        Annuler
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Formulaire pour ajouter un habitat -->
+            <form id="habitat-form" class="space-y-4 page-hidden" action="pagesphp/data.php" method="POST">
+                <!-- ⭐ CHAMP CACHÉ HABITAT ⭐ -->
+                <input type="hidden" name="action_type" value="ajouter_habitat">
+                
+                <h4 class="text-xl font-bold text-green-700 mb-4">Nouvel habitat</h4>
+                <div>
+                    <label class="block text-gray-700 mb-2">Nom de l'habitat</label>
+                    <input type="text" name="habitat_name" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Description</label>
+                    <textarea name="habitat_description" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" rows="3"></textarea>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" class="flex-1 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold transition-colors">
+                        Ajouter l'habitat
+                    </button>
+                    <button type="button" id="cancel-habitat" class="flex-1 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 font-semibold transition-colors">
+                        Annuler
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
-
+   </div>
    <script>
     // Variables globales
     let currentPage = 'accueil';
