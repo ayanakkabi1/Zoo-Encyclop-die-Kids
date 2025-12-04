@@ -5,10 +5,31 @@
     if($action_type=="ajouter_animal"){
         $nom_animal=$_POST['animal_name'];
         $image_animal=$_POST['animal_image'];
-        $habitat_animal=$_Post['animal_habitat'];
-        $diet_animal=$_Post['animal_diet'];
+        $habitat_animal=$_POST['animal_habitat'];
+        $diet_animal=$_POST['animal_diet'];
+        
+        $nom_animal = $connexion->real_escape_string($nom_animal);
+        $image_animal = $connexion->real_escape_string($image_animal);
+       
+        $sql="INSERT INTO animal (NOM_Animal,image_animal,Type_Alimentaire,habitat_id)
+        VALUES ('$nom_animal','$image_animal','$diet_animal',(SELECT id FROM habitats WHERE nom = '$nom_habitat')";
+        
+         if ($connexion->query($sql) === TRUE) {
+            $_SESSION['message'] = "✅ Animal ajouté avec succès !";
+        } else {
+            $_SESSION['message'] = "❌ Erreur: " . $connexion->error;
+        }
+}elseif ($action_type == "ajouter_habitat") {
+        
+        $nom_habitat = $_POST['habitat_name'];
+        $description = $_POST['habitat_description'];
+        
+        $nom_habitat = $conn->real_escape_string($nom_habitat);
+        $description = $conn->real_escape_string($description);
+        
+        $sql = "INSERT INTO habitat (nom, description) 
+                VALUES ('$nom_habitat', '$description')";
     }
-    $nom_animal = $connexion->real_escape_string($nom_animal);
-    $image_animal = $connexion->real_escape_string($image_animal);
+    header("Location: ../index.php");
+    exit();
  }
-?>
