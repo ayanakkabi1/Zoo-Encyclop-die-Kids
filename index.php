@@ -115,10 +115,20 @@ $animals=getAllAnimals();
 
             <!-- Cartes animaux -->
             <div id="animals-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-    
+    <?php if (!empty($animals)): ?>
+        <?php foreach ($animals as $animal): ?>
+            <div class="bg-white shadow rounded p-4 text-center">
+                <img src="<?= $animal['image_animal'] ?>" alt="<?= $animal['NOM_Animal'] ?>" class="mx-auto w-32 h-32 rounded-full mb-4">
+                <h2 class="text-lg font-bold"><?= $animal['NOM_Animal'] ?></h2>
+                <p><?= $animal['Type_Alimentaire'] ?></p>
+                <p>Habitat : <?= $animal['Nom_Habitat'] ?? 'Non défini' ?></p>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
         <div class="text-center py-12 col-span-3">
             <p class="text-gray-600">Aucun animal trouvé.</p>
         </div>
+    <?php endif; ?>
 </div>
         </div>
     </section>
