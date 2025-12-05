@@ -1,6 +1,6 @@
 <?php
-include "config/database.php";
-include "pagesphp/animals.php";
+    include("pagesphp/animals.php");
+    include("config/database.php");
 $animals=getAllAnimals();
 ?>
 <!DOCTYPE html>
@@ -49,6 +49,37 @@ $animals=getAllAnimals();
             background-color: #fee2e2 !important;
             border-color: #ef4444 !important;
         }
+        /* Ajoutez dans la balise <style> */
+.group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+}
+
+.mini-button {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.mini-button:hover {
+    transform: scale(1.1);
+}
+
+.animal-card {
+    position: relative;
+}
+
+.animal-card:hover {
+    transform: translateY(-4px);
+    transition: transform 0.3s ease;
+}
+
+.floating-buttons {
+    position: absolute;
+    z-index: 10;
+}
     </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-green-50">
@@ -114,14 +145,45 @@ $animals=getAllAnimals();
             </div>
 
             <!-- Cartes animaux -->
-            <div id="animals-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Cartes animaux - Version avec petits boutons émojis -->
+<div id="animals-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
     <?php if (!empty($animals)): ?>
         <?php foreach ($animals as $animal): ?>
-            <div class="bg-white shadow rounded p-4 text-center">
-                <img src="<?= $animal['image_animal'] ?>" alt="<?= $animal['NOM_Animal'] ?>" class="mx-auto w-32 h-32 rounded-full mb-4">
-                <h2 class="text-lg font-bold"><?= $animal['NOM_Animal'] ?></h2>
-                <p><?= $animal['Type_Alimentaire'] ?></p>
-                <p>Habitat : <?= $animal['Nom_Habitat'] ?? 'Non défini' ?></p>
+            <div class="bg-white shadow-lg rounded-xl p-6 text-center hover:shadow-xl transition-shadow duration-300 relative animal-card">
+                <!-- Boutons en haut à droite -->
+                <div class="absolute top-3 right-3 flex gap-1">
+                 <a href="pagesphp/animals.php?modify=<?= $animal['ID_Animal'] ?>">
+                <button class="modify-animal-btn p-2 bg-blue-100 text-blue-600 rounded-full hover:bg-blue-200 transition-colors text-sm"
+                            title="Modifier">
+                        ✏️
+                    </button>
+                    </a>
+                    <a href="pagesphp/animals.php?delete=<?= $animal['ID_Animal'] ?>">
+                    <button class="delete-animal-btn p-2 bg-red-100 text-red-600 rounded-full hover:bg-red-200 transition-colors text-sm"
+                            title="Supprimer">
+                        🗑️
+                    </button>
+                    </a>
+                </div>
+                
+                <img src="<?= $animal['image_animal'] ?>" 
+                     alt="<?= $animal['NOM_Animal'] ?>" 
+                     class="mx-auto w-32 h-32 rounded-full mb-4 object-cover border-4 border-orange-100">
+                <h2 class="text-xl font-bold text-green-800 mb-2"><?= $animal['NOM_Animal'] ?></h2>
+                <p class="text-gray-600 mb-1">
+                    <span class="font-semibold">Régime:</span> 
+                    <span class="px-2 py-1 rounded-full text-sm <?php 
+                        echo $animal['Type_Alimentaire'] === 'Carnivore' ? 'bg-red-100 text-red-800' : 
+                               ($animal['Type_Alimentaire'] === 'Herbivore' ? 'bg-green-100 text-green-800' : 
+                               'bg-blue-100 text-blue-800');
+                    ?>">
+                        <?= $animal['Type_Alimentaire'] ?>
+                    </span>
+                </p>
+                <p class="text-gray-600">
+                    <span class="font-semibold">Habitat:</span> 
+                    <?= $animal['Nom_Habitat'] ?? 'Non défini' ?>
+                </p>
             </div>
         <?php endforeach; ?>
     <?php else: ?>
