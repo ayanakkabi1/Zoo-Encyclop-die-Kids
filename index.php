@@ -1,5 +1,7 @@
 <?php
 include "config/database.php";
+include "pagesphp/animals.php";
+$animals=getAllAnimals();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -113,11 +115,11 @@ include "config/database.php";
 
             <!-- Cartes animaux -->
             <div id="animals-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Les animaux seront chargés dynamiquement en PHP -->
-                <div class="text-center py-12 col-span-3">
-                    <p class="text-gray-600">Chargement des animaux...</p>
-                </div>
-            </div>
+    
+        <div class="text-center py-12 col-span-3">
+            <p class="text-gray-600">Aucun animal trouvé.</p>
+        </div>
+</div>
         </div>
     </section>
 

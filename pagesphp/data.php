@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         // Insert animal
-        $sql = "INSERT INTO animal (NOM_Animal, image_animal, Type_Alimentaire, habitat_id) 
+        $sql = "INSERT INTO animal (NOM_Animal, image_animal, Type_Alimentaire, ID_Habitat) 
                 VALUES ('$nom_animal', '$image_animal', '$diet_animal', $habitat_animal)";
 
         if (mysqli_query($connexion, $sql)) {
